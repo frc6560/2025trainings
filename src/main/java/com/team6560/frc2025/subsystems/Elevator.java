@@ -11,11 +11,9 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.team6560.frc2025.Constants.ElevatorConstants;
-import com.team6560.frc2025.RobotContainer;
 
 public class Elevator extends SubsystemBase{
 
