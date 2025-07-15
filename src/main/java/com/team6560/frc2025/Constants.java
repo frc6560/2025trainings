@@ -41,7 +41,21 @@ public final class Constants {
     public static int ElevLeftEncID = 1;
     public static double ElevSpeed = 0.2;
     
+    public static final int TopLimitSwitchID = 1;
+    public static final int BotLimitSwitchID = 1;
 
+      public static final class State{
+      
+        //need to be tested
+        public static final double L1ORSTOW = 0;
+        public static final double L2 = 0;
+        public static final double L3 = 0;
+        public static final double L4 = 0;
+        public static final double REMOVEBALLL12 = 0;
+        public static final double REMOVEBALLL2L3 = 0;
+        public static final double SHOOTBALL = 0;
+      }
+    
   }
 
   public static final class WristConstants {
