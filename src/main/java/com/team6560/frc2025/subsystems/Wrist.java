@@ -38,7 +38,17 @@ public class Wrist extends SubsystemBase{
 
     //target pos
     private double targetPos = 0.0;
-  
+
+    public enum State {
+        L1,
+        L2,
+        L3,
+        L4,
+        STOW,
+        INTAKE,
+        BARGE,
+        IN_MOTION
+    }
 
     public Wrist() {
         //initialization
@@ -101,6 +111,30 @@ public class Wrist extends SubsystemBase{
     public void terminate() {
 // stops wrist
         wristMotor.set(0);
+    }
+
+    public State getState(){
+        // Determine the current state of the wrist based on its position
+        double exception = 2;
+        double angle = getWristAngle();
+        
+        if (angle - WristConstants.L1 > exception) {
+            return State.L1;
+        } else if (angle - WristConstants.L2 > exception) {
+            return State.L2;
+        } else if (angle - WristConstants.L3 > exception) {
+            return State.L3;
+        } else if (angle - WristConstants.L4 > exception) {
+            return State.L4;
+        } else if (angle - WristConstants.STOW > exception) {
+            return State.STOW;
+        } else if (angle - WristConstants.INTAKE > exception) {
+            return State.INTAKE;
+        } else if (angle - WristConstants.BARGE > exception) {
+            return State.BARGE;
+        } else {
+            return State.IN_MOTION; // No valid state
+        }
     }
         
    

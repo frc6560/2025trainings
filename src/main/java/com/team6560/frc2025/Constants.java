@@ -38,7 +38,7 @@ public final class Constants {
 
   
   public static final class WristConstants {
-
+// substitiute with actual values later
   public static final int GEAR_RATIO = 108; // 108:1 gear ratio for the wrist motor
   public static final int M_ID = 1; // CAN ID for the wrist motor
   public static final int Encoder_ID = 2; // CAN ID for the wrist encoder
@@ -47,6 +47,13 @@ public final class Constants {
   public static final double PID_KD = 0.0; // Derivative gain for wrist position control
   public static final double UPPER_BOUND = 90.0; // Maximum angle for the wrist in degrees
   public static final double LOWER_BOUND = -90.0; // Minimum angle for the wrist in degrees
+  public static final double STOW = 0.0; // Angle for the wrist when stowed in degrees
+  public static final double INTAKE = -45.0; // Angle for the wrist when in intake position in degrees
+  public static final double BARGE= 45.0; // Angle for the wrist when in barge position in degrees
+  public static final double L1 = 30.0; // Angle for the wrist when in level 1 position in degrees
+  public static final double L2 = 60.0; // Angle for the wrist when in level 2 position in degrees
+  public static final double L3= 90.0; // Angle for the wrist when in level 3 position in degrees
+  public static final double L4 = 120.0; // Angle for the wrist when in level 4 position in degreess
     }
 
   public static final class ClimbConstants {
