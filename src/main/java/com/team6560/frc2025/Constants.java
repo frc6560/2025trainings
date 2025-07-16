@@ -45,6 +45,8 @@ public final class Constants {
   public static final double PID_KP = 1.0; // Proportional gain for wrist position control
   public static final double PID_KI = 0.01; // Integral gain for wrist position control
   public static final double PID_KD = 0.0; // Derivative gain for wrist position control
+  public static final double PID_KS = 0.1; // Static gain for wrist position control
+  public static final double PID_KG = 0.0; // Feedforward gain for wrist position control
   public static final double UPPER_BOUND = 90.0; // Maximum angle for the wrist in degrees
   public static final double LOWER_BOUND = -90.0; // Minimum angle for the wrist in degrees
   public static final double STOW = 0.0; // Angle for the wrist when stowed in degrees
@@ -54,6 +56,7 @@ public final class Constants {
   public static final double L2 = 60.0; // Angle for the wrist when in level 2 position in degrees
   public static final double L3= 90.0; // Angle for the wrist when in level 3 position in degrees
   public static final double L4 = 120.0; // Angle for the wrist when in level 4 position in degreess
+
     }
 
   public static final class ClimbConstants {

@@ -11,7 +11,6 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.units.measure.Angle;
 // WPILib (Subsystem & Utilities) imports
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
@@ -63,6 +62,8 @@ public class Wrist extends SubsystemBase{
         PID_controller.kP = WristConstants.PID_KP; // Proportional gain for position control
         PID_controller.kI = WristConstants.PID_KI; // Integral gain for position control
         PID_controller.kD = WristConstants.PID_KD; // Derivative gain for position control
+        PID_controller.kG = WristConstants.PID_KG; // Feedforward gain, adjust as needed
+        PID_controller.kS = WristConstants.PID_KS; // Static gain, adjust as needed
         
         wristMotor.getConfigurator().apply(PID_controller); // Apply PID gains
 
@@ -115,22 +116,22 @@ public class Wrist extends SubsystemBase{
 
     public State getState(){
         // Determine the current state of the wrist based on its position
-        double exception = 2;
+        double padding = 2.5;
         double angle = getWristAngle();
         
-        if (angle - WristConstants.L1 > exception) {
+        if (angle - WristConstants.L1 > padding) {
             return State.L1;
-        } else if (angle - WristConstants.L2 > exception) {
+        } else if (angle - WristConstants.L2 > padding) {
             return State.L2;
-        } else if (angle - WristConstants.L3 > exception) {
+        } else if (angle - WristConstants.L3 > padding) {
             return State.L3;
-        } else if (angle - WristConstants.L4 > exception) {
+        } else if (angle - WristConstants.L4 > padding) {
             return State.L4;
-        } else if (angle - WristConstants.STOW > exception) {
+        } else if (angle - WristConstants.STOW > padding) {
             return State.STOW;
-        } else if (angle - WristConstants.INTAKE > exception) {
+        } else if (angle - WristConstants.INTAKE > padding) {
             return State.INTAKE;
-        } else if (angle - WristConstants.BARGE > exception) {
+        } else if (angle - WristConstants.BARGE > padding) {
             return State.BARGE;
         } else {
             return State.IN_MOTION; // No valid state
