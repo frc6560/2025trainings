@@ -8,9 +8,17 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.units.measure.Angle;
 // WPILib (Subsystem & Utilities) imports
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTableInstance.NetworkMode;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Constants
 import com.team6560.frc2025.Constants.WristConstants;
@@ -23,14 +31,44 @@ public class Wrist extends SubsystemBase{
     //encoder
     private final CANcoder wristEncoder;
 
+    private final NetworkTable ntTable = NetworkTableInstance.getDefault().getTable("Wrist");
+    private final NetworkTableEntry ntAngle = ntTable.getEntry("Angle");
+    private final NetworkTableEntry ntPosition = ntTable.getEntry("wrist position");
+    private final NetworkTableEntry ntTargetPos = ntTable.getEntry("Target angle");
+
+    //target pos
+    private double targetPos = 0.0;
+  
 
     public Wrist() {
         //initialization
+        wristMotor = new TalonFX(WristConstants.M_ID); // Replace with actual CAN ID
+        wristEncoder = new CANcoder(WristConstants.Encoder_ID); // Replace with actual CAN ID
+        TalonFXConfiguration wristConfig = new TalonFXConfiguration();
+
+        wristConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake; // Set motor to brake mode
+        wristConfig.Feedback.RotorToSensorRatio = WristConstants.GEAR_RATIO; //sets gear ration between motor and encoder
+        
+        Slot0Configs PID_controller = new Slot0Configs();
+        PID_controller.kP = WristConstants.PID_KP; // Proportional gain for position control
+        PID_controller.kI = WristConstants.PID_KI; // Integral gain for position control
+        PID_controller.kD = WristConstants.PID_KD; // Derivative gain for position control
+        
+        wristMotor.getConfigurator().apply(PID_controller); // Apply PID gains
+
     }
-    
+    @Override
+    public void periodic() {
+        // Update NetworkTables periodically
+        ntAngle.setDouble(getWristAngle());
+        ntPosition.setDouble(getWristPosition());
+        ntTargetPos.setDouble(targetPos);
+
+    }
+
     public void setWristPosition(double position) {
         // Set the wrist motor to a specific position
-        wristMotor.setControl(new PositionVoltage(position));
+        wristMotor.setControl(new PositionVoltage(position * 360 / WristConstants.GEAR_RATIO)); // Convert angle to encoder position
     }
     public void setWristVelocity(double velocity) {
         // Set the wrist motor to a specific velocity
@@ -49,7 +87,7 @@ public class Wrist extends SubsystemBase{
     }
     public double getWristAngle() {
         // Get the current angle of the wrist
-        return wristEncoder.getPosition().getValueAsDouble() * 360.0;
+        return wristEncoder.getPosition().getValueAsDouble() * 360 / WristConstants.GEAR_RATIO; // Convert encoder position to angle in degrees
     }
     public double get_upper_bound() {
         // Get the upper bound of the wrist
@@ -62,7 +100,9 @@ public class Wrist extends SubsystemBase{
     }
     public void terminate() {
 // stops wrist
+        wristMotor.set(0);
     }
         
    
 }
+// state machine
