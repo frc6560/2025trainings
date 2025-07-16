@@ -40,10 +40,10 @@ public final class Constants {
   public static final class WristConstants {
 // substitiute with actual values later
   public static final int GEAR_RATIO = 108; // 108:1 gear ratio for the wrist motor
-  public static final int M_ID = 1; // CAN ID for the wrist motor
-  public static final int Encoder_ID = 2; // CAN ID for the wrist encoder
-  public static final double PID_KP = 0.1; // Proportional gain for wrist position control
-  public static final double PID_KI = 0.0; // Integral gain for wrist position control
+  public static final int M_ID = 16; // CAN ID for the wrist motor
+  public static final int Encoder_ID = 17; // CAN ID for the wrist encoder
+  public static final double PID_KP = 1.0; // Proportional gain for wrist position control
+  public static final double PID_KI = 0.01; // Integral gain for wrist position control
   public static final double PID_KD = 0.0; // Derivative gain for wrist position control
   public static final double UPPER_BOUND = 90.0; // Maximum angle for the wrist in degrees
   public static final double LOWER_BOUND = -90.0; // Minimum angle for the wrist in degrees
