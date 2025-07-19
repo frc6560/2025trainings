@@ -85,6 +85,10 @@ public class ManualControls {
         return secondXbox.getRightTriggerAxis() > 0.25;
     }
 
+    public boolean goToBarge() {
+        return secondXbox.getStartButton(); // TODO change to correct button
+    }
+
     // pipe and ball grabber 
 
     // shifted for ball

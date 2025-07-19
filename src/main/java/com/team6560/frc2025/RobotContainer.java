@@ -4,7 +4,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.team6560.frc2025.Constants.ElevatorConstants;
 import com.team6560.frc2025.Constants.OperatorConstants;
 // This WILL be broken. Good luck!
-import com.team6560.frc2025.commands.BallGrabberCommand;
+/*import com.team6560.frc2025.commands.BallGrabberCommand;
 import com.team6560.frc2025.commands.ClimbCommand;
 import com.team6560.frc2025.commands.ElevatorCommand;
 import com.team6560.frc2025.commands.PipeGrabberCommand;
@@ -13,7 +13,7 @@ import com.team6560.frc2025.commands.auto.*;
 import com.team6560.frc2025.subsystems.BallGrabber;
 import com.team6560.frc2025.subsystems.Climb;
 import com.team6560.frc2025.subsystems.Elevator;
-import com.team6560.frc2025.subsystems.PipeGrabber;
+import com.team6560.frc2025.subsystems.PipeGrabber;*/
 import com.team6560.frc2025.subsystems.Wrist;
 import com.team6560.frc2025.subsystems.swervedrive.SwerveSubsystem;
 
@@ -46,19 +46,19 @@ public class RobotContainer {
 
   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve/falcon"));
 
-  private final Climb climb;
+  /*private final Climb climb;
   private final ClimbCommand climbCommand;
   private final PipeGrabber pipeGrabber;
   private final PipeGrabberCommand pipeGrabberCommand;
   private final BallGrabber ballGrabber;
-  private final BallGrabberCommand ballGrabberCommand;
+  private final BallGrabberCommand ballGrabberCommand;*/
 
   private final Wrist wrist;
-  private final Elevator elevator = new Elevator();
+  //private final Elevator elevator = new Elevator();
 
   private final SendableChooser<Command> autoChooser;
 
-  SwerveInputStream driveAngularVelocity = SwerveInputStream.of(
+  /*SwerveInputStream driveAngularVelocity = SwerveInputStream.of(
     drivebase.getSwerveDrive(),
       () -> (Math.pow(driverXbox.getLeftY(), 2)
             * Math.copySign(1, driverXbox.getLeftY())) 
@@ -70,13 +70,13 @@ public class RobotContainer {
     driverXbox.getRightX() * driverXbox.getRightX() * Math.copySign(1, driverXbox.getRightX()))
     .deadband(OperatorConstants.DEADBAND)
     .scaleTranslation(0.8)
-    .allianceRelativeControl(true);; 
+    .allianceRelativeControl(true);*/
 
   public RobotContainer() {
 
     CameraServer.startAutomaticCapture(0);
 
-    climb = new Climb(controls);
+    /*climb = new Climb(controls);
     climbCommand = new ClimbCommand(climb, controls);
     climb.setDefaultCommand(climbCommand);
     
@@ -86,10 +86,10 @@ public class RobotContainer {
 
     pipeGrabber = new PipeGrabber();
     pipeGrabberCommand = new PipeGrabberCommand(pipeGrabber, controls);
-    pipeGrabber.setDefaultCommand(pipeGrabberCommand);
+    pipeGrabber.setDefaultCommand(pipeGrabberCommand);*/
 
     wrist = new Wrist();
-    wrist.setDefaultCommand(new WristCommand(wrist, controls));
+    /*wrist.setDefaultCommand(new WristCommand(wrist, controls));
     elevator.setDefaultCommand(new ElevatorCommand(elevator, controls));
 
     NamedCommands.registerCommand("Scoring L4", new ScoringL4(wrist, elevator, pipeGrabber));
@@ -217,5 +217,5 @@ public class RobotContainer {
   public void resetHeading() {
     // TODO Auto-generated method stub
     this.drivebase.zeroGyro();
-  }
-}
+  }*/
+}}
