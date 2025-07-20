@@ -49,13 +49,24 @@ public final class Constants {
   public static final double PID_KG = 0.0; // Feedforward gain for wrist position control
   public static final double UPPER_BOUND = 0.0; // Maximum angle for the wrist in degrees
   public static final double LOWER_BOUND = 0.0; // Minimum angle for the wrist in degrees
-  public static final double STOW = 0.0; // Angle for the wrist when stowed in degrees
-  public static final double INTAKE = 0.0; // Angle for the wrist when in intake position in degrees
+  public static final double STOW = 90.0; // Angle for the wrist when stowed in degrees
+  public static final double INTAKE = 225.0; // Angle for the wrist when in intake position in degrees
   public static final double BARGE= 0.0; // Angle for the wrist when in barge position in degrees
-  public static final double L1 = 0.0; // Angle for the wrist when in level 1 position in degrees
-  public static final double L2 = 0.0; // Angle for the wrist when in level 2 position in degrees
-  public static final double L3= 0.0; // Angle for the wrist when in level 3 position in degrees
-  public static final double L4 = 0.0; // Angle for the wrist when in level 4 position in degreess
+  public static final double L1 = 200.0; // Angle for the wrist when in level 1 position in degrees
+  public static final double L2 = 80.0; // Angle for the wrist when in level 2 position in degrees
+  public static final double L3= 33.76; // Angle for the wrist when in level 3 position in degrees
+  public static final double L4 = 40.0; // Angle for the wrist when in level 4 position in degreess
+  public static final double S_STOW = 208.5; // same as normal pickup position
+  public static final double S_L2 = 148.5; // assuming no offset, also L3 33.76
+  public static final double S_L4 = 250;
+
+
+
+
+
+
+
+
 
     }
 

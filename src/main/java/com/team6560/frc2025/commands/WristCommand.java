@@ -24,9 +24,25 @@ public class WristCommand extends Command {
 
     @Override
     public void execute() {
+
+        if(manualControls.shiftedControls()){
+
+            if (manualControls.goToL2()){
+    
+              target_state = State.S_L2;
+    
+            } else if(manualControls.goToL4()){
+    
+              target_state = State.S_L4;
+    
+            } else if (manualControls.goToStow()) {
+              target_state = State.S_STOW;
+    
+            }
+    
+          } 
         if (manualControls.goToL1()) {
             target_state = Wrist.State.L1;
-            target_name = "L1";
         } else if (manualControls.goToL2()) {
             target_state = Wrist.State.L2;
         } else if (manualControls.goToL3()) {

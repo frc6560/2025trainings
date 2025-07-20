@@ -46,7 +46,10 @@ public class Wrist extends SubsystemBase{
         STOW,
         INTAKE,
         BARGE,
-        IN_MOTION
+        IN_MOTION,
+        S_STOW,
+        S_L2,
+        S_L4
     }
 
     public Wrist() {
@@ -133,8 +136,15 @@ public class Wrist extends SubsystemBase{
             return State.INTAKE;
         } else if (angle - WristConstants.BARGE > padding) {
             return State.BARGE;
+        } else if (angle - WristConstants.S_STOW > padding) {
+            return State.S_STOW; 
+        } else if (angle - WristConstants.S_L2 > padding) {
+            return State.S_L2; 
+        } else if (angle - WristConstants.S_L4 > padding) {
+            return State.S_L4; 
         } else {
-            return State.IN_MOTION; // No valid state
+            return State.IN_MOTION; // If no specific state is matched, return IN_MOTION
+           
         }
     }
         
