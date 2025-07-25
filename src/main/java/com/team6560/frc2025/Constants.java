@@ -36,24 +36,32 @@ public final class Constants {
   public static final class ElevatorConstants {
     
     //placeholders
-    public static int ElevLeftCanID = 1;
-    public static int ElevRightCanID = 1;
-    public static int ElevLeftEncID = 1;
+    public static int ElevLeftCanID = 14;
+    public static int ElevRightCanID = 15;
     public static double ElevSpeed = 0.2;
     
-    public static final int TopLimitSwitchID = 1;
-    public static final int BotLimitSwitchID = 1;
+    public static final int TopLimitSwitchID = 28;
+    public static final int BotLimitSwitchID = 29;
 
       public static final class State{
-      
+        
+        public static double HeightToRotations(double TargetHeight) {
+          return ((TargetHeight-WristHeightOffGround)/NumInPerRot);
+        } 
+
+        static double heightnumber = 1;
+        //placeholder
+
+        public static final double NumInPerRot = 2.66;
+        public static final double WristHeightOffGround = 17;
         //need to be tested
-        public static final double L1ORSTOW = 0;
-        public static final double L2 = 0;
-        public static final double L3 = 0;
-        public static final double L4 = 0;
-        public static final double REMOVEBALLL12 = 0;
-        public static final double REMOVEBALLL2L3 = 0;
-        public static final double SHOOTBALL = 0;
+        public static final double L1ORSTOW = HeightToRotations(18);
+        public static final double L2 = HeightToRotations(heightnumber); //all heightnumber references are placeholders
+        public static final double L3 = HeightToRotations(heightnumber);
+        public static final double L4 = HeightToRotations(heightnumber);
+        public static final double REMOVEBALLL12 = HeightToRotations(heightnumber);
+        public static final double REMOVEBALLL2L3 = HeightToRotations(heightnumber);
+        public static final double SHOOTBALL = HeightToRotations(heightnumber);
       }
     
   }

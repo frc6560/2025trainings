@@ -64,7 +64,11 @@ public class Elevator extends SubsystemBase{
         return topLimitSwitch.get();
     }
 
-    public boolean getLImitSwitchBot() {
+    public boolean getLimitSwitchBot() {
         return botLimitSwitch.get();
+    }
+
+    public double getElevatorHeight() {
+        return ElevLeft.getPosition().getValueAsDouble();
     }
 }
