@@ -22,7 +22,11 @@
 // // Constants
 // import com.team6560.frc2025.Constants.WristConstants;
 
+<<<<<<< Updated upstream:src/main/java/com/team6560/frc2025/commands/Wrist.java
 // public class Wrist extends SubsystemBase{
+=======
+public class WristCommand extends SubsystemBase{
+>>>>>>> Stashed changes:src/main/java/com/team6560/frc2025/commands/WristCommand.java
 
 //     //motor
 //     private final TalonFX wristMotor;
@@ -49,11 +53,19 @@
 //         IN_MOTION
 //     }
 
+<<<<<<< Updated upstream:src/main/java/com/team6560/frc2025/commands/Wrist.java
 //     public Wrist() {
 //         //initialization
 //         wristMotor = new TalonFX(WristConstants.M_ID); // Replace with actual CAN ID
 //         wristEncoder = new CANcoder(WristConstants.Encoder_ID); // Replace with actual CAN ID
 //         TalonFXConfiguration wristConfig = new TalonFXConfiguration();
+=======
+    public WristCommand() {
+        //initialization
+        wristMotor = new TalonFX(WristConstants.M_ID); // Replace with actual CAN ID
+        wristEncoder = new CANcoder(WristConstants.Encoder_ID); // Replace with actual CAN ID
+        TalonFXConfiguration wristConfig = new TalonFXConfiguration();
+>>>>>>> Stashed changes:src/main/java/com/team6560/frc2025/commands/WristCommand.java
 
 //         wristConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake; // Set motor to brake mode
 //         wristConfig.Feedback.RotorToSensorRatio = WristConstants.GEAR_RATIO; //sets gear ration between motor and encoder
