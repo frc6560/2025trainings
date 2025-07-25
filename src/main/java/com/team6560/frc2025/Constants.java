@@ -35,13 +35,43 @@ public final class Constants {
 
   public static final class ElevatorConstants {
     }
+
+    public static final class WristConstants {  
+      public static double PID_KP = 0.5; // Proportional gain for position control
+      public static double PID_KI = 0.0; // Integral gain for position control
+      public static double PID_KD = 0.0; // Derivative gain for position control
+      public static double PID_KG = 0.0; // Feedforward gain, adjust as needed
+      public static double PID_KS = 0.0; // Static gain, adjust as needed
+
+      public static final int M_ID = 1; // Replace with actual CAN ID
+      public static final int Encoder_ID = 2; // Replace with actual CAN ID
+
+      public static double GEAR_RATIO = 1.0; // Sets gear ratio between motor and encoder
+
+      public static double L1 = 0.0; // Position for Level 1
+      public static double L2 = 0.0; // Position for Level 2
+      public static double L3 = 0.0; // Position for Level 3
+      public static double L4 = 0.0; // Position for Level 4
+      public static double STOW = 0.0; // Position for Stow
+      public static double INTAKE = 0.0; // Position for Intake
+      public static double BARGE = 0.0; // Position for Barge
+
+      public static final double UPPER_BOUND = 0.0;
+      public static final double LOWER_BOUND = 0.0;
+
+
+    }
+  
+    public static final class ClimbConstants {
+
+
+    }
   }
 
-  public static final class WristConstants {
-  }
+  // public static final class WristConstants {
+  // }
 
-  public static final class ClimbConstants {
+  // public static final class ClimbConstants {
 
 
-  }
-}
+  // }
