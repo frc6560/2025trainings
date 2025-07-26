@@ -1,22 +1,16 @@
 package com.team6560.frc2025.subsystems;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.team6560.frc2025.Constants.ClimbConstants;
+import com.team6560.frc2025.ManualControls;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix6.hardware.CANcoder;
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.configs.Slot0Configs;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.PositionVoltage;
-
-import frc.robot.Constants;
-import frc.robot.ManualControls;
-
-import static frc.robot.utility.NetworkTable.NtValueDisplay.ntDispTab;
-
-import frc.robot.Constants.ClimbConstants;
 
 public class Climb extends SubsystemBase {
     
@@ -32,11 +26,11 @@ public class Climb extends SubsystemBase {
 
     
     private CANcoder absoluteEncoder;
-    private final double initialEncoderPos = 0;
+    private final double initialEncoderPos = 0.25;
     private TalonFXConfiguration fxConfig;
 
-    private static final double CLIMB_UP_PERCENT = 0.65;
-    private static final double CLIMB_DOWN_PERCENT = 0.65;
+    private static final double CLIMB_UP_PERCENT = 0.75;
+    private static final double CLIMB_DOWN_PERCENT = 0.75;
 
     private final NetworkTable ntTable = NetworkTableInstance.getDefault().getTable("Climb");
     private final NetworkTableEntry ntPos = ntTable.getEntry("Position");
@@ -75,7 +69,7 @@ public class Climb extends SubsystemBase {
     }
 
     public double getMotor2Pos() { // reversed
-        return -this.motor2.getPosition().getitValueAsDouble();
+        return -this.motor2.getPosition().getValueAsDouble();
     }
 
     public double getEncoderPos() {

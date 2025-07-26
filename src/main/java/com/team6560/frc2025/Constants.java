@@ -1,8 +1,9 @@
 package com.team6560.frc2025;
 
+import com.frc3481.swervelib.math.Matter;
+
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
-import com.frc3481.swervelib.math.Matter;
 public final class Constants {
 
   public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
@@ -34,14 +35,18 @@ public final class Constants {
   }
 
   public static final class ElevatorConstants {
-    }
+
+    
   }
 
   public static final class WristConstants {
   }
 
   public static final class ClimbConstants {
-
-
+    public static final int MOTOR_1_ID = 20;
+    public static final int MOTOR_2_ID = 21;
+    public static final int CANCODER_ID = 22;
+    public static final double UPPER_SOFT_BOUND = 0.195; // assuming reset at hard limit 
+    public static final double LOWER_SOFT_BOUND = -0.157; // abs encoder
+    public static final double GEAR_RATIO = 1.5; 
   }
-}
