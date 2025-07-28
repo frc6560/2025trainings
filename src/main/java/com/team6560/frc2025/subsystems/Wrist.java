@@ -88,7 +88,10 @@ public class Wrist extends SubsystemBase{
 
     public void setWristPosition(double position) {
         // Set the wrist motor to a specific position
-        wristMotor.setControl(new PositionVoltage(position * 360 / WristConstants.GEAR_RATIO)); // Convert angle to encoder position
+        position = Math.min(Math.max(position, WristConstants.LOWER_BOUND), WristConstants.UPPER_BOUND); 
+        targetPos = position; // Update target position
+        targetPos = position/360 *180; // Convert degrees to encoder units
+        wristMotor.setControl(new PositionVoltage(targetPos)); // Set the motor control to position
     }
     public void setWristVelocity(double velocity) {
         // Set the wrist motor to a specific velocity
@@ -128,25 +131,25 @@ public class Wrist extends SubsystemBase{
         double padding = 2.5;
         double angle = getWristAngle();
         
-        if (angle - WristConstants.L1 > padding) {
+        if (angle - WristConstants.L1 < padding) {
             return State.L1;
-        } else if (angle - WristConstants.L2 > padding) {
+        } else if (angle - WristConstants.L2 < padding) {
             return State.L2;
-        } else if (angle - WristConstants.L3 > padding) {
+        } else if (angle - WristConstants.L3 < padding) {
             return State.L3;
-        } else if (angle - WristConstants.L4 > padding) {
+        } else if (angle - WristConstants.L4 < padding) {
             return State.L4;
-        } else if (angle - WristConstants.STOW > padding) {
+        } else if (angle - WristConstants.STOW < padding) {
             return State.STOW;
-        } else if (angle - WristConstants.INTAKE > padding) {
+        } else if (angle - WristConstants.INTAKE < padding) {
             return State.INTAKE;
-        } else if (angle - WristConstants.BARGE > padding) {
+        } else if (angle - WristConstants.BARGE < padding) {
             return State.BARGE;
-        } else if (angle - WristConstants.S_STOW > padding) {
+        } else if (angle - WristConstants.S_STOW < padding) {
             return State.S_STOW; 
-        } else if (angle - WristConstants.S_L2 > padding) {
+        } else if (angle - WristConstants.S_L2 < padding) {
             return State.S_L2; 
-        } else if (angle - WristConstants.S_L4 > padding) {
+        } else if (angle - WristConstants.S_L4 < padding) {
             return State.S_L4; 
         } else {
             return State.IN_MOTION; // If no specific state is matched, return IN_MOTION

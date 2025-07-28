@@ -81,6 +81,19 @@ public class WristCommand extends Command {
         case BARGE:
             targetAngle = WristConstants.BARGE;
             break;
+        case S_STOW:
+            targetAngle = WristConstants.S_STOW;
+            break;
+        case S_L2:
+            targetAngle = WristConstants.S_L2;
+            break;
+        case S_L4:
+            targetAngle = WristConstants.S_L4;
+            break;
+        case IN_MOTION:
+            // If the wrist is in motion, hold the current position
+            targetAngle = wrist.getWristAngle();
+            break;
         default:
             // Hold current position if no valid state
             targetAngle = wrist.getWristAngle();
