@@ -47,8 +47,8 @@ public final class Constants {
   public static final double PID_KD = 0.0; // Derivative gain for wrist position control
   public static final double PID_KS = 0.1; // Static gain for wrist position control
   public static final double PID_KG = 0.0; // Feedforward gain for wrist position control
-  public static final double UPPER_BOUND = 0.0; // Maximum angle for the wrist in degrees
-  public static final double LOWER_BOUND = 0.0; // Minimum angle for the wrist in degrees
+  public static final double UPPER_BOUND = 254.0; // Maximum angle for the wrist in degrees
+  public static final double LOWER_BOUND = -5.0; // Minimum angle for the wrist in degrees
   public static final double STOW = 90.0; // Angle for the wrist when stowed in degrees
   public static final double INTAKE = 225.0; // Angle for the wrist when in intake position in degrees
   public static final double BARGE= 0.0; // Angle for the wrist when in barge position in degrees

@@ -7,7 +7,10 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.sim.CANcoderSimState;
+import com.ctre.phoenix6.sim.TalonFXSimState;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -69,6 +72,9 @@ public class Wrist extends SubsystemBase{
         PID_controller.kS = WristConstants.PID_KS; // Static gain, adjust as needed
         
         wristMotor.getConfigurator().apply(PID_controller); // Apply PID gains
+
+        // In Wrist.java constructor:
+
 
     }
     @Override
@@ -147,7 +153,6 @@ public class Wrist extends SubsystemBase{
            
         }
     }
-        
-   
+    
 }
 // state machine

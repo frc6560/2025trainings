@@ -40,7 +40,7 @@ public class WristCommand extends Command {
     
             }
     
-          } 
+          }
         if (manualControls.goToL1()) {
             target_state = Wrist.State.L1;
         } else if (manualControls.goToL2()) {
