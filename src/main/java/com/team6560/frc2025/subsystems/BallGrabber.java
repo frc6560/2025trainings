@@ -17,8 +17,8 @@ public class BallGrabber extends SubsystemBase {
     private SparkMax grabberMotor; 
 
     private static final int GRABBER_MOTOR_ID = 25;
-    private static final double INTAKE_SPEED = 0.1;
-    private static final double OUTTAKE_SPEED = -0.1; 
+    private static final double INTAKE_SPEED = -0.3;
+    private static final double OUTTAKE_SPEED = -0.7; 
 
     private static final double MAX_CURRENT_RUNNING = 30; 
     public BallGrabber() {
