@@ -86,12 +86,6 @@ public class Robot extends TimedRobot
   @Override
   public void disabledPeriodic()
   {
-    m_robotContainer.resetLLBeforeAuto();
-    if (disabledTimer.hasElapsed(Constants.DrivebaseConstants.WHEEL_LOCK_TIME))
-    {
-      m_robotContainer.setMotorBrake(false);
-      disabledTimer.stop();
-    }
   }
 
   /**
@@ -101,7 +95,6 @@ public class Robot extends TimedRobot
   public void autonomousInit()
   {
     m_robotContainer.setMotorBrake(true);
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null)

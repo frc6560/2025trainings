@@ -25,6 +25,16 @@ public class Elevator extends SubsystemBase{
 
     private double targetPos = 0;
 
+    public enum State {
+        L1ORSTOW,
+        L2,
+        L3,
+        L4,
+        REMOVEBALLL12,
+        REMOVEBALLL2L3,
+        SHOOTBALL,
+    };
+
     public Elevator() {
 
         this.ElevLeft = new TalonFX(ElevatorConstants.ElevLeftCanID, "Canivore");
@@ -34,8 +44,8 @@ public class Elevator extends SubsystemBase{
         this.botLimitSwitch = new DigitalInput(ElevatorConstants.BotLimitSwitchID);
         Slot0Configs elevatorPID = new Slot0Configs();
         
-        elevatorPID.kP = 0;
-        elevatorPID.kI = 0;
+        elevatorPID.kP = 0.7;
+        elevatorPID.kI = 0.01;
         elevatorPID.kD = 0;
 
         TalonFXConfiguration config = new TalonFXConfiguration();
@@ -45,6 +55,11 @@ public class Elevator extends SubsystemBase{
         ElevLeft.getConfigurator().apply(config.withSlot0(elevatorPID));
         ElevRight.getConfigurator().apply(config.withSlot0(elevatorPID));
     }
+
+    public void periodic() {
+
+    }
+
 
     public void setElevatorPosition(double targetRotations){
         this.targetPos = targetRotations;
