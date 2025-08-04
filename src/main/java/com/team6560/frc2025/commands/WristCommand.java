@@ -14,6 +14,7 @@ public class WristCommand extends Command {
     public WristCommand(Wrist wrist, ManualControls manualControls) {
         this.wrist = wrist;
         this.manualControls = manualControls;
+        addRequirements(wrist);
     }
 
     @Override

@@ -73,8 +73,6 @@ public class Wrist extends SubsystemBase{
         
         wristMotor.getConfigurator().apply(PID_controller); // Apply PID gains
 
-        // In Wrist.java constructor:
-
 
     }
     @Override
@@ -89,8 +87,7 @@ public class Wrist extends SubsystemBase{
     public void setWristPosition(double position) {
         // Set the wrist motor to a specific position
         position = Math.min(Math.max(position, WristConstants.LOWER_BOUND), WristConstants.UPPER_BOUND); 
-        targetPos = position; // Update target position
-        targetPos = position/360 *180; // Convert degrees to encoder units
+        targetPos = position/360 * 108; // Update target position
         wristMotor.setControl(new PositionVoltage(targetPos)); // Set the motor control to position
     }
     public void setWristVelocity(double velocity) {
