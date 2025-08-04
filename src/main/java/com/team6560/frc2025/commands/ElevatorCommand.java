@@ -23,7 +23,7 @@ public class ElevatorCommand extends Command{
     public void initialize() {
         elevator.stopElev();
         elevator.setElevatorPosition(ElevatorConstants.State.L1ORSTOW);
-
+        System.out.println("Initialize elevator");
     }
 
     public void execute() {
@@ -34,38 +34,56 @@ public class ElevatorCommand extends Command{
 
         else if (elevator.getLimitSwitchBot()) {
             elevator.stopElev();
+            System.out.println("Bottom Limit Switch");
         }
 
-        if (controls.goToL1()) {
-            targetState = State.L1ORSTOW;
-        }
+        if (controls.shiftedControls()) {
+            System.out.println("ShiftedControls");
 
-        else if (controls.goToL2()) {
-            targetState = State.L2;
-        }
-        
-        else if (controls.goToL3()) {
-            targetState = State.L3;
-        }
-
-        else if (controls.goToL4()) {
-            targetState = State.L4;
-        }
-
-        else if (controls.shiftedControls()) {
     
             if (controls.goToL2()) {
-                targetState = State.REMOVEBALLL12;
+                targetState = State.REMOVEBALLL2;
+                System.out.println("L1/2 Ball Removal");
             }
             
             else if (controls.goToL3()) {
-                targetState = State.REMOVEBALLL2L3;
+                targetState = State.REMOVEBALLL3;
+                System.out.println("L2/3 Ball Removal");
             }
 
             else if (controls.goToL4()) {
                 targetState = State.SHOOTBALL;
+                System.out.println("Shoot Ball");
             }
         }
+
+        else {
+
+            if (controls.goToL1()) {
+                targetState = State.L1ORSTOW;
+                System.out.println("L1");
+            }
+    
+            else if (controls.goToL2()) {
+                targetState = State.L2;
+                System.out.println("L2");
+            }
+            
+            else if (controls.goToL3()) {
+                targetState = State.L3;
+                System.out.println("L3");
+            }
+    
+            else if (controls.goToL4()) {
+                targetState = State.L4;
+                System.out.println("L4");
+            }
+
+        }
+
+        
+
+        
         double targetRotations = 0;
 
         if (targetState == State.L1ORSTOW) {
@@ -80,11 +98,11 @@ public class ElevatorCommand extends Command{
         else if (targetState == State.L4) {
             targetRotations = (ElevatorConstants.State.L4);
         }
-        else if (targetState == State.REMOVEBALLL12) {
-            targetRotations = (ElevatorConstants.State.REMOVEBALLL12);
+        else if (targetState == State.REMOVEBALLL2) {
+            targetRotations = (ElevatorConstants.State.REMOVEBALLL2);
         }
-        else if (targetState == State.REMOVEBALLL2L3) {
-            targetRotations = (ElevatorConstants.State.REMOVEBALLL2L3);
+        else if (targetState == State.REMOVEBALLL3) {
+            targetRotations = (ElevatorConstants.State.REMOVEBALLL3);
         }
         else if (targetState == State.SHOOTBALL) {
             targetRotations = (ElevatorConstants.State.SHOOTBALL);

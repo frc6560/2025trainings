@@ -56,12 +56,12 @@ public final class Constants {
         public static final double WristHeightOffGround = 17;
         //need to be tested
         public static final double L1ORSTOW = HeightToRotations(18);
-        public static final double L2 = HeightToRotations(heightnumber); //all heightnumber references are placeholders
-        public static final double L3 = HeightToRotations(heightnumber);
-        public static final double L4 = HeightToRotations(heightnumber);
-        public static final double REMOVEBALLL12 = HeightToRotations(heightnumber);
-        public static final double REMOVEBALLL2L3 = HeightToRotations(heightnumber);
-        public static final double SHOOTBALL = HeightToRotations(heightnumber);
+        public static final double L2 = /*5*/ HeightToRotations(32);
+        public static final double L3 = /*10*/HeightToRotations(47.625);
+        public static final double L4 = /*15*/ HeightToRotations(72);
+        public static final double REMOVEBALLL2 = /*4*/ HeightToRotations(32 + 8.125);
+        public static final double REMOVEBALLL3 = /*8*/ HeightToRotations(47.625 + 8.125);
+        public static final double SHOOTBALL = /*18*/ HeightToRotations(76 + 8.125);
       }
     
   }

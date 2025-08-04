@@ -30,8 +30,8 @@ public class Elevator extends SubsystemBase{
         L2,
         L3,
         L4,
-        REMOVEBALLL12,
-        REMOVEBALLL2L3,
+        REMOVEBALLL2,
+        REMOVEBALLL3,
         SHOOTBALL,
     };
 
@@ -44,8 +44,8 @@ public class Elevator extends SubsystemBase{
         this.botLimitSwitch = new DigitalInput(ElevatorConstants.BotLimitSwitchID);
         Slot0Configs elevatorPID = new Slot0Configs();
         
-        elevatorPID.kP = 0.7;
-        elevatorPID.kI = 0.01;
+        elevatorPID.kP = 0.8;
+        elevatorPID.kI = 0.05;
         elevatorPID.kD = 0;
 
         TalonFXConfiguration config = new TalonFXConfiguration();

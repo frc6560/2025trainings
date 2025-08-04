@@ -3,6 +3,7 @@ package com.team6560.frc2025;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team6560.frc2025.Constants.ElevatorConstants;
 import com.team6560.frc2025.Constants.OperatorConstants;
+import com.team6560.frc2025.commands.ElevatorCommand;
 // This WILL be broken. Good luck!
 import com.team6560.frc2025.subsystems.Elevator;
 import com.team6560.frc2025.subsystems.swervedrive.SwerveSubsystem;
@@ -39,7 +40,7 @@ public class RobotContainer {
   private final Elevator elevator = new Elevator();
 
   public RobotContainer() {
-
+    elevator.setDefaultCommand(new ElevatorCommand(elevator, controls));
   }
   private void configureBindings() { 
 
