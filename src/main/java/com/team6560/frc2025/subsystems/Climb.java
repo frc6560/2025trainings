@@ -26,11 +26,11 @@ public class Climb extends SubsystemBase {
 
     
     private CANcoder absoluteEncoder;
-    private final double initialEncoderPos = 0.25;
+    private final double initialEncoderPos = 0.25; //start at 25% of a full rotation
     private TalonFXConfiguration fxConfig;
 
-    private static final double CLIMB_UP_PERCENT = 0.75;
-    private static final double CLIMB_DOWN_PERCENT = 0.75;
+    private static final double CLIMB_UP_PERCENT = 0.75; //  75% power  (IDK if its been tuned - Ishaan)
+    private static final double CLIMB_DOWN_PERCENT = 0.75;//  75% power
 
     private final NetworkTable ntTable = NetworkTableInstance.getDefault().getTable("Climb");
     private final NetworkTableEntry ntPos = ntTable.getEntry("Position");
@@ -45,9 +45,9 @@ public class Climb extends SubsystemBase {
         this.absoluteEncoder = new CANcoder(ClimbConstants.CANCODER_ID, "Canivore");
 
         this.fxConfig = new TalonFXConfiguration(); 
-        fxConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+        fxConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;   // sets to break when no power is applied
  
-        motor1.getConfigurator().apply(fxConfig);
+        motor1.getConfigurator().apply(fxConfig);  //applys settings to brake whin no power is applied
         motor2.getConfigurator().apply(fxConfig);
         ntPos.setDouble(this.getEncoderPos());
         ntUseSoftlimits.setBoolean(true);
@@ -55,9 +55,10 @@ public class Climb extends SubsystemBase {
 
     @Override
     public void periodic() {
-        ntPos.setDouble(this.getEncoderPos());
+        ntPos.setDouble(this.getEncoderPos());   // update position
     }
 
+    // resets both motors and the CANcoder to 0
     public void resetEncoderPos() {
         this.motor1.setPosition(0);
         this.motor2.setPosition(0);
@@ -72,7 +73,7 @@ public class Climb extends SubsystemBase {
         return -this.motor2.getPosition().getValueAsDouble();
     }
 
-    public double getEncoderPos() {
+    public double getEncoderPos() { // reads from absolute encoder
         return this.absoluteEncoder.getAbsolutePosition().getValueAsDouble();
     }
 
