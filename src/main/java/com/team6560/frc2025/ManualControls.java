@@ -73,6 +73,7 @@ public class ManualControls {
 
     public boolean shiftedControls(){
       return secondXbox.getRightBumperButton();
+      
     }
 
     // wrist
@@ -89,7 +90,7 @@ public class ManualControls {
 
     // shifted for ball
     public boolean runGrabberIntake(){
-      return secondXbox.getLeftTriggerAxis() > 0.25;
+      return secondXbox.getLeftTriggerAxis() > 0.25; // change if inconvenient
     }
 
     public boolean runGrabberOuttake() {

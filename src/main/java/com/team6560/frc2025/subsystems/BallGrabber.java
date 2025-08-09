@@ -17,10 +17,11 @@ public class BallGrabber extends SubsystemBase {
     private SparkMax grabberMotor; 
 
     private static final int GRABBER_MOTOR_ID = 25;
-    private static final double INTAKE_SPEED = -0.7;
+    private static final double INTAKE_SPEED = -0.3;
     private static final double OUTTAKE_SPEED = 0.7; 
 
     private static final double MAX_CURRENT_RUNNING = 30; 
+    private static final double GAMEPEICE_CURRENT = 20; //  threshold to detect if a ball is present
     public BallGrabber() {
         this.grabberMotor = new SparkMax(GRABBER_MOTOR_ID, MotorType.kBrushless);
         ntDispTab("Ball Grabber")
@@ -33,22 +34,27 @@ public class BallGrabber extends SubsystemBase {
 }
 
 
-public void runIntake(){
-if (grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING) {
-    grabberMotor.set(INTAKE_SPEED);
-} else {
-    grabberMotor.set(0);
+public void periodic(){
+    if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
+        grabberMotor.set(-0.1);
+        SmartDashboard.putBoolean("Ball Detected", true);
+    } else if (grabberMotor.getOutputCurrent() < GAMEPEICE_CURRENT) {
+        SmartDashboard.putBoolean("Ball Detected", false);
+        grabberMotor.set(0.1);
+    }
+    else{
+        grabberMotor.set(0.1); 
+    }
 }
+public void runIntakeOuttake(){
+    if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
+        grabberMotor.set(OUTTAKE_SPEED);
+    } else{
+        grabberMotor.set(INTAKE_SPEED);
+    }
 }
 
-public void runOuttake(){
-    if (grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING) {
-        grabberMotor.set(OUTTAKE_SPEED);
-    } else {
-        grabberMotor.set(0);
-    }
-    grabberMotor.set(OUTTAKE_SPEED);
-}
+
 
 public void stop(){
     grabberMotor.set(0);
@@ -56,6 +62,10 @@ public void stop(){
 
 public double getMotorVelocity(){
     return grabberMotor.get();
+}
+
+public double getDutyCycle() {
+    return grabberMotor.get(); 
 }
 }
 

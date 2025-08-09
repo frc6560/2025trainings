@@ -68,14 +68,9 @@ public final class Constants {
     }
   }
 
-<<<<<<< Updated upstream
-  // public static final class WristConstants {
-  // }
-=======
-  public static final class WristConstants {
+
     
-  }
->>>>>>> Stashed changes
+
 
   // public static final class ClimbConstants {
 

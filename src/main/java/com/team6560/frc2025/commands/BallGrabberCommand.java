@@ -6,17 +6,19 @@ import com.team6560.frc2025.subsystems.BallGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
 
  public class BallGrabberCommand extends Command {
+    
     final BallGrabber ballGrabber;
     final ManualControls controls;
 
-    public BallGrabberCommand(BallGrabber ballGrabber, ManualControls controls) {
-        this.ballGrabber = ballGrabber;
+    public BallGrabberCommand(BallGrabber grabber, ManualControls controls) {
+        this.ballGrabber = grabber;
         this.controls = controls;
-        addRequirements(ballGrabber);
+        addRequirements(grabber);
 
     }
     @Override
     public void initialize(){
+
         ballGrabber.stop();
     }
 
@@ -24,9 +26,7 @@ import edu.wpi.first.wpilibj2.command.Command;
     public void execute() {
         if(controls.shiftedControls()){
             if(controls.runGrabberIntake()){
-                ballGrabber.runIntake();
-            } else if(controls.runGrabberOuttake()){
-                ballGrabber.runOuttake();
+                ballGrabber.runIntakeOuttake();
             } else {
                 ballGrabber.stop();
             }
