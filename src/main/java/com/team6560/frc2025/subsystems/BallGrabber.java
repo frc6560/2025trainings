@@ -36,21 +36,25 @@ public class BallGrabber extends SubsystemBase {
 
 public void periodic(){
     if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
-        grabberMotor.set(-0.1);
+       // grabberMotor.set(-0.1);
         SmartDashboard.putBoolean("Ball Detected", true);
     } else if (grabberMotor.getOutputCurrent() < GAMEPEICE_CURRENT) {
         SmartDashboard.putBoolean("Ball Detected", false);
-        grabberMotor.set(0.1);
+        // grabberMotor.set(0.1);
     }
-    else{
-        grabberMotor.set(0.1); 
-    }
+    // else{
+    //     grabberMotor.set(0.1); 
+    // }
 }
 public void runIntakeOuttake(){
     if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
         grabberMotor.set(OUTTAKE_SPEED);
-    } else{
+    } 
+    else if ((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
         grabberMotor.set(INTAKE_SPEED);
+    }
+    else{
+        grabberMotor.set(0.2);
     }
 }
 
