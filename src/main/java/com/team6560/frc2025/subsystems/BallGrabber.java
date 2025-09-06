@@ -35,6 +35,10 @@ public class BallGrabber extends SubsystemBase {
 
 
 public void periodic(){
+    SmartDashboard.putNumber("Ball Grabber Current", grabberMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Ball Grabber Voltage", grabberMotor.getBusVoltage());
+    SmartDashboard.putNumber("Ball Grabber Speed", grabberMotor.get());
+    SmartDashboard.putNumber("Ball Grabber Duty Cycle", getMotorVelocity());
     if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
        // grabberMotor.set(-0.1);
         SmartDashboard.putBoolean("Ball Detected", true);
