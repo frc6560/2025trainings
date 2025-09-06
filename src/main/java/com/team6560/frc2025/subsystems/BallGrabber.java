@@ -5,13 +5,15 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import com.revrobotics.spark.SparkMax;
 
-import static com.team6560.frc2025.utility.NetworkTable.NtValueDisplay.ntDispTab; 
+import static com.team6560.frc2025.utility.NetworkTable.NtValueDisplay.ntDispTab;
 
-
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.team6560.frc2025.Constants;
+import com.team6560.frc2025.Constants  ;
 
 public class BallGrabber extends SubsystemBase {
     private SparkMax grabberMotor; 
@@ -22,33 +24,24 @@ public class BallGrabber extends SubsystemBase {
 
     private static final double MAX_CURRENT_RUNNING = 30; 
     private static final double GAMEPEICE_CURRENT = 20; //  threshold to detect if a ball is present
+
+    final NetworkTable nt = NetworkTableInstance.getDefault().getTable("Ball Grabber");
+    final NetworkTableEntry ballDetectedEntry = nt.getEntry("Ball Detected");
+    final NetworkTableEntry motorCurrent = nt.getEntry("Ball Grabber Current");
+
     public BallGrabber() {
         this.grabberMotor = new SparkMax(GRABBER_MOTOR_ID, MotorType.kBrushless);
-        ntDispTab("Ball Grabber")
-            .add("Ball Grabber Current", () -> grabberMotor.getOutputCurrent())
-            .add("Ball Grabber Voltage", () -> grabberMotor.getBusVoltage())
-            .add("Ball Grabber Speed", () -> grabberMotor.get())
-            .add("Ball Grabber Duty Cycle", () -> getMotorVelocity());
-
-
-}
+    }
 
 
 public void periodic(){
-    SmartDashboard.setDefaultNumber("Ball Grabber Current", grabberMotor.getOutputCurrent());
-    SmartDashboard.setDefaultNumber("Ball Grabber Voltage", grabberMotor.getBusVoltage());
-    SmartDashboard.setDefaultNumber("Ball Grabber Speed", grabberMotor.get());
-    SmartDashboard.setDefaultNumber("Ball Grabber Duty Cycle", getMotorVelocity());
+    motorCurrent.setDouble(grabberMotor.getOutputCurrent());
+    ballDetectedEntry.setBoolean(getBallDetected());
     if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
-       // grabberMotor.set(-0.1);
         SmartDashboard.setDefaultBoolean(getName() + " Ball Detected", true);
     } else if (grabberMotor.getOutputCurrent() < GAMEPEICE_CURRENT) {
         SmartDashboard.setDefaultBoolean(getName() + " Ball Detected", false);
-        // grabberMotor.set(0.1);
     }
-    // else{
-    //     grabberMotor.set(0.1); 
-    // }
 }
 public void runIntakeOuttake(){
     if((grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING)){
@@ -60,6 +53,10 @@ public void runIntakeOuttake(){
     else{
         grabberMotor.set(0.2);
     }
+}
+
+public boolean getBallDetected(){
+    return grabberMotor.getOutputCurrent() > GAMEPEICE_CURRENT && grabberMotor.getOutputCurrent() < MAX_CURRENT_RUNNING;
 }
 
 

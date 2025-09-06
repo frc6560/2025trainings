@@ -93,9 +93,9 @@ public class ManualControls {
       return secondXbox.getLeftTriggerAxis() > 0.25; // change if inconvenient
     }
 
-    public boolean runGrabberOuttake() {
-      return firstXbox.getRightBumper(); // change if inconvenient
-    }
+    // public boolean runGrabberOuttake() {
+    //   return firstXbox.getRightBumper(); // change if inconvenient
+    // }
     public boolean goToPlacePos() {
       return secondXbox.getLeftBumperButton();
     }
